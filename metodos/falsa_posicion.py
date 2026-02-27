@@ -2,7 +2,7 @@ from typing import Callable, Dict, List
 import time
 
 
-def metodo_biseccion(
+def metodo_falsa_posicion(
     f: Callable[[float], float],
     a: float,
     b: float,
@@ -10,8 +10,12 @@ def metodo_biseccion(
     max_iter: int
 ) -> Dict:
     """
-    Bisection method for f(x)=0 on [a,b].
+    False Position (Regula Falsi) for f(x)=0 on [a,b].
+
+    c = b - f(b)*(b-a)/(f(b)-f(a))
+
     Stops by tolerance on |f(c)| or absolute step error.
+    Handles division by zero if f(b) == f(a).
     """
     inicio = time.time()
     tabla: List[Dict] = []
@@ -21,7 +25,11 @@ def metodo_biseccion(
     fb = f(b)
 
     for n in range(1, max_iter + 1):
-        c = (a + b) / 2.0
+        denom = (fb - fa)
+        if denom == 0:
+            raise ZeroDivisionError("Division by zero: f(b) - f(a) = 0 in False Position.")
+
+        c = b - fb * (b - a) / denom
         fc = f(c)
 
         if c_prev is None:
@@ -36,11 +44,10 @@ def metodo_biseccion(
             "error_abs": err_abs, "error_rel": err_rel
         })
 
-        # stop criteria
         if abs(fc) < tolerancia or (c_prev is not None and err_abs < tolerancia):
             break
 
-        # interval update
+        # update interval keeping the sign change
         if fa * fc < 0:
             b = c
             fb = fc
@@ -52,7 +59,7 @@ def metodo_biseccion(
 
     fin = time.time()
     return {
-        "metodo": "Bisección",
+        "metodo": "Falsa Posición",
         "raiz": c,
         "iteraciones": n,
         "error_final": tabla[-1]["error_abs"],
