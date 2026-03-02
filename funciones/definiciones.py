@@ -15,6 +15,7 @@ def derivada_t(lambda_val: float) -> float:
 # ====== EXERCISE 2 ======
 def eficiencia_e(x: float) -> float:
     """E(x) = x^3 - 6x^2 + 11x - 6.5"""
+<<<<<<< HEAD
     return x**3 - 6 * x**2 + 11 * x - 6.5
 
 # ====== EXERCISE 3 ======
@@ -46,3 +47,6 @@ def modelo_financiero_p(x: float) -> float:
 def modelo_financiero_p_derivada(x: float) -> float:
     """P'(x) = e^(-x/2) (1 - x/2)"""
     return np.exp(-x / 2.0) * (1 - x / 2.0)
+=======
+    return x**3 - 6 * x**2 + 11 * x - 6.5
+>>>>>>> 238e7780fde820f098b58b8105a5030a8da34793

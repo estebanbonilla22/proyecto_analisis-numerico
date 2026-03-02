@@ -11,6 +11,7 @@ E(x) = x^3 - 6x^2 + 11x - 6.5 = 0
 
 en el intervalo [2, 4].
 
+<<<<<<< HEAD
 # ejercicio 3
 
 Predicción de crecimiento de base de datos mediante el Método de Punto Fijo. Se resuelve la ecuación x = 0.5 cos(x) + 1.5, analizando la convergencia según el valor inicial y verificando la condición |g'(x)| < 1.
@@ -35,6 +36,8 @@ Método implementado
 
 Secante
 
+=======
+>>>>>>> 238e7780fde820f098b58b8105a5030a8da34793
 ## Métodos implementados
 - Falsa Posición (Regla Falsa)
 ## Instalación
